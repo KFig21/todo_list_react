@@ -35,9 +35,9 @@
           color: $completedGreen;
           transition: all 0.12s linear;
 
-          &:hover {
-            opacity: 0.7;
-          }
+          // &:hover {
+          //   opacity: 0.7;
+          // }
         }
 
         .false-completed {
@@ -46,9 +46,9 @@
           color: $borderGray;
           transition: all 0.12s linear;
 
-          &:hover {
-            color: $completedGreen;
-          }
+          // &:hover {
+          //   color: $completedGreen;
+          // }
         }
 
         .true-urgent {
@@ -65,9 +65,9 @@
           background-color: transparent;
           transition: all 0.12s linear;
 
-          &:hover {
-            color: $urgentRed;
-          }
+          // &:hover {
+          //   color: $urgentRed;
+          // }
         }
       }
       .task {

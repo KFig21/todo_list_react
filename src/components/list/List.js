@@ -70,21 +70,21 @@ export default function List({ list, userInfo }) {
   };
 
   return (
-    <div className="list">
-      {list.listId !== undefined && (
-        <form className="add">
-          <button disabled={isInvalid} type="submit" onClick={handleAddTask}>
-            <AddCircleIcon className="add-icon" />
-          </button>
-          <input
-            placeholder="Add a task"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-        </form>
-      )}
-      <div className="tasks-container">
-        <Suspense fallback={<p className="suspense">loading...</p>}>
+    <Suspense fallback={<p className="suspense">loading...</p>}>
+      <div className="list">
+        {list.listId !== undefined && (
+          <form className="add">
+            <button disabled={isInvalid} type="submit" onClick={handleAddTask}>
+              <AddCircleIcon className="add-icon" />
+            </button>
+            <input
+              placeholder="Add a task"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+          </form>
+        )}
+        <div className="tasks-container">
           {tasks.map((item) => (
             <>
               <Task
@@ -95,29 +95,29 @@ export default function List({ list, userInfo }) {
               />
             </>
           ))}
-        </Suspense>
+        </div>
+        <div className="sortbar">
+          <button onClick={() => sortByStatus()}>
+            <CheckCircleIcon
+              className={
+                sort === "completed" ? "sort-status active" : "sort-status"
+              }
+            />
+          </button>
+          <button onClick={() => sortByPriority()}>
+            <PriorityHighIcon
+              className={
+                sort === "urgent" ? "sort-priority active" : "sort-priority"
+              }
+            />
+          </button>
+          <button onClick={() => sortByDate()}>
+            <TodayIcon
+              className={sort === "due" ? "sort-date active" : "sort-date"}
+            />
+          </button>
+        </div>
       </div>
-      <div className="sortbar">
-        <button onClick={() => sortByStatus()}>
-          <CheckCircleIcon
-            className={
-              sort === "completed" ? "sort-status active" : "sort-status"
-            }
-          />
-        </button>
-        <button onClick={() => sortByPriority()}>
-          <PriorityHighIcon
-            className={
-              sort === "urgent" ? "sort-priority active" : "sort-priority"
-            }
-          />
-        </button>
-        <button onClick={() => sortByDate()}>
-          <TodayIcon
-            className={sort === "due" ? "sort-date active" : "sort-date"}
-          />
-        </button>
-      </div>
-    </div>
+    </Suspense>
   );
 }

@@ -25,7 +25,7 @@ export default function Main() {
   const { userInfo } = useUser();
   const [lists, setLists] = useState(emptyArr);
   const [currentList, setCurrentList] = useState(emptyList);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const history = useHistory();
 
   // load lists upon initial load

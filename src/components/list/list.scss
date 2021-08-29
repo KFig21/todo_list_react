@@ -60,7 +60,7 @@
 
   .tasks-container {
     margin-top: 73.6px;
-    margin-bottom: 50px;
+    margin-bottom: 43.2px;
 
     .suspense {
       margin-top: 50px;
@@ -69,8 +69,8 @@
   }
 
   .sortbar {
-    position: absolute;
-    width: 100%;
+    position: fixed;
+    width: 80vw;
     bottom: 0;
     background-color: $sidebarColor;
     height: 43.2px;
@@ -78,6 +78,10 @@
     align-items: center;
     justify-content: space-evenly;
     border-top: solid 2px $borderDark;
+
+    @include mobile {
+      width: 100%;
+    }
 
     button {
       color: $textColor;
