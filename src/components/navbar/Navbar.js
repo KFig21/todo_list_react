@@ -15,11 +15,6 @@ export default function Navbar({ title, sidebarOpen, setSidebarOpen }) {
   const history = useHistory();
   let navTitle = title === undefined ? "To-Do List" : title;
 
-  const handleSignOut = () => {
-    firebase.auth().signOut();
-    history.push("/login");
-  };
-
   return (
     <div className="navbar">
       <div className="relative">

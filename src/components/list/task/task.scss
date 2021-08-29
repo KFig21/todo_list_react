@@ -85,9 +85,13 @@
     }
     .right {
       display: flex;
+
       .date {
         padding: 0px 20px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
           .create-icon {
