@@ -9,6 +9,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import List from "../../components/list/List";
 import db from "../../lib/firebase";
+import { useHistory } from "react-router-dom";
 
 export default function Main() {
   const emptyList = {
@@ -25,6 +26,7 @@ export default function Main() {
   const [lists, setLists] = useState(emptyArr);
   const [currentList, setCurrentList] = useState(emptyList);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const history = useHistory();
 
   // load lists upon initial load
   useEffect(() => {
@@ -54,6 +56,12 @@ export default function Main() {
         setLists(snapshot.docs.map((doc) => doc.data()));
       });
   }, [currentList]);
+
+  useEffect(() => {
+    if (!user) {
+      history.push("/login");
+    }
+  }, [user]);
 
   return (
     <div className="main">
