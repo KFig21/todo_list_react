@@ -15,7 +15,7 @@ function App() {
   const { user } = useAuthListener();
   return (
     <UserContext.Provider value={{ user }}>
-      <Router basename="/to_do_list_react">
+      <Router basename="/todo_list_react">
         <div className="app">
           <Suspense fallback={<div className="suspense">loading...</div>}>
             <Switch>
