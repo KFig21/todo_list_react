@@ -1,0 +1,96 @@
+@import "../../global.scss";
+
+.signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $listColor;
+
+  .container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+
+    .modal {
+      // border: solid 1px $borderDark;
+      border-radius: 4px;
+      width: 90vw;
+      max-width: 400px;
+      height: fit-content;
+      text-align: center;
+      background-color: $primaryColor;
+      color: $textColor;
+
+      .error {
+        color: crimson;
+        padding-bottom: 5px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: auto;
+        align-items: center;
+        margin-bottom: 15px;
+
+        input {
+          width: 100%;
+          padding: 5px;
+          font-size: 16px;
+          background-color: $listColor;
+          border: none;
+          color: $textColor;
+          border-radius: 3px;
+          margin-bottom: 8px;
+          outline: none;
+
+          &:focus {
+            box-shadow: 0px 0px 0px 1px $accentColor;
+          }
+        }
+
+        button {
+          color: $textColor;
+          border-radius: 3px;
+          border: none;
+          outline: none;
+          font-size: 16px;
+          font-weight: 700;
+          padding: 5px 10px;
+          cursor: pointer;
+          margin-top: 5px;
+        }
+        .disabled {
+          background-color: $primaryColor;
+          color: rgba(255, 255, 255, 0.5);
+          cursor: auto;
+        }
+
+        .able {
+          background-color: $listColor;
+
+          &:hover {
+            background-color: $borderDark;
+          }
+          &:focus {
+            box-shadow: 0px 0px 0px 1px $accentColor;
+          }
+        }
+      }
+    }
+    .already {
+      color: $textColor;
+      margin-top: 15px;
+
+      .link {
+        color: $accentColor;
+        font-weight: 500;
+      }
+    }
+  }
+}

@@ -1,0 +1,132 @@
+@import "../../../global.scss";
+
+.list-item-container {
+  border-bottom: solid 2px $borderDark;
+
+  .list-item {
+    color: $textColor;
+    display: flex;
+    padding-left: 30px;
+    align-items: center;
+    min-height: 55.6px;
+    justify-content: space-between;
+
+    .left {
+      display: flex;
+
+      .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        .completedIcon {
+          font-size: 20px;
+          margin-right: 15px;
+          color: $completedGreen;
+          transition: all 0.12s linear;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+
+        .incompleteIcon {
+          font-size: 16px;
+          padding: 2px;
+          margin-right: 15px;
+          color: $borderGray;
+          transition: all 0.12s linear;
+
+          &:hover {
+            color: $completedGreen;
+          }
+        }
+
+        .urgentIcon {
+          font-size: 16px;
+          margin-right: 15px;
+          padding: 2px;
+          background-color: $urgentRed;
+          border-radius: 50%;
+        }
+
+        .urgentIconFaded {
+          font-size: 16px;
+          margin-right: 15px;
+          padding: 2px;
+          color: $borderGray;
+          background-color: transparent;
+          transition: all 0.12s linear;
+
+          &:hover {
+            color: $urgentRed;
+          }
+        }
+      }
+      .task {
+        cursor: pointer;
+        line-height: 15px;
+
+        &:hover {
+          .create-icon {
+            opacity: 1;
+            color: $accentColor;
+          }
+        }
+
+        .create-icon {
+          opacity: 0;
+          margin-left: 10px;
+          font-size: 12px;
+          transition: all 0.12s linear;
+        }
+      }
+    }
+    .right {
+      display: flex;
+      .date {
+        padding: 0px 20px;
+        cursor: pointer;
+
+        &:hover {
+          .create-icon {
+            opacity: 1;
+            color: $accentColor;
+          }
+        }
+
+        .create-icon {
+          opacity: 0;
+          margin-right: 10px;
+          font-size: 12px;
+          transition: all 0.12s linear;
+        }
+      }
+
+      .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+
+        .closeIcon {
+          background-color: transparent;
+          color: $urgentRed;
+          font-size: 16px;
+          opacity: 0.5;
+          cursor: pointer;
+          border-radius: 50px;
+          transition: all 0.2s linear;
+
+          &:hover {
+            opacity: 1;
+            font-size: 20px;
+            color: white;
+            background-color: $urgentRed;
+          }
+        }
+      }
+    }
+  }
+}

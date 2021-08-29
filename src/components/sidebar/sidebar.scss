@@ -1,0 +1,125 @@
+@import "../../global.scss";
+
+.sidebar {
+  background-color: $sidebarColor;
+  width: 25vw;
+  min-width: 200px;
+  max-width: 300px;
+  margin-top: $navbarHeight;
+  height: calc(100vh - 25px - #{$navbarHeight});
+  border-right: solid 2px $borderDark;
+  padding-top: 25px;
+  box-shadow: 3px 0px 10px 2px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  transition: ease all 0.5s;
+  position: relative;
+  // overflow-y: scroll;
+
+  @include mobile {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    z-index: 3;
+
+    &.active {
+      left: 0px;
+    }
+  }
+
+  .sidebar-list {
+    display: flex;
+    flex-direction: column;
+
+    .sidebar-list-item {
+      color: $textColor;
+      display: flex;
+      align-items: center;
+      padding: 5px 5px 5px 25px;
+      margin-bottom: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $navbarColor;
+      }
+
+      .list-name {
+        font-size: 20px;
+      }
+    }
+
+    .add {
+      background-color: inherit;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      margin-top: 15px;
+      border-radius: 3px;
+      width: 100%;
+      transition: all 0.1s linear;
+
+      &:hover {
+        background-color: rgb(42, 42, 44);
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 25px;
+      }
+
+      .add-icon {
+        color: $accentColor;
+        transition: all 0.1s linear;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      input {
+        background-color: inherit;
+        border: none;
+        color: $textColor;
+        height: 21.6px;
+        padding: 16px 5px;
+        margin-left: 10px;
+        font-size: 16px;
+        outline: none;
+        width: 100%;
+      }
+
+      &:focus-within {
+        background-color: $navbarColor;
+      }
+    }
+  }
+
+  .signout {
+    position: fixed;
+    bottom: 0;
+    border: none;
+    outline: none;
+    background-color: $navbarColor;
+    color: $textColor;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    width: 20vw;
+    min-width: inherit;
+    max-width: inherit;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: $accentColor;
+      color: $primaryColor;
+    }
+    @include mobile {
+      width: 100%;
+    }
+  }
+}

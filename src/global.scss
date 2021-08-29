@@ -1,0 +1,37 @@
+$primaryColor: rgb(47, 47, 49);
+$primaryColorFaded: rgb(37, 37, 37);
+$navbarColor: rgb(47, 47, 49);
+$sidebarColor: #232325;
+$taskBarColor: rgb(39, 39, 41);
+$listColor: #1f1e20;
+$borderGray: #696969;
+$borderDark: #11100f;
+$accentColor: rgb(255, 208, 0);
+$textColor: rgb(255, 252, 248);
+$completedGreen: rgb(0, 167, 50);
+$urgentRed: crimson;
+
+$navbarHeight: 8vh;
+
+$width: 768px;
+
+@mixin mobile {
+  @media (max-width: #{$width}) {
+    @content;
+  }
+}
+
+// scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primaryColor;
+  // border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $listColor;
+}
