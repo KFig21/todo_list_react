@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import "./task.scss";
 import db from "../../../lib/firebase";
 import Edit from "./edit/Edit";
+import Delete from "./delete/Delete";
 // icons
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
 import CloseIcon from "@material-ui/icons/Close";
 import CreateIcon from "@material-ui/icons/Create";
 
-export default function Task({ task, userInfo, list, completed }) {
-  console.log("task", task);
+export default function Task({ task, userInfo, list, completed, sort }) {
   const [toggleCompleted, setToggleCompleted] = useState(completed);
   const [toggleUrgent, setToggleUrgent] = useState(task.urgent);
   const [showEdit, setShowEdit] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   // completed
   const handleToggleCompleted = async () => {
@@ -38,6 +38,7 @@ export default function Task({ task, userInfo, list, completed }) {
       .update({
         completed: toggleCompleted ? false : true,
       });
+    console.log("toggle complete", task.taskName);
   };
 
   // urgent
@@ -63,6 +64,7 @@ export default function Task({ task, userInfo, list, completed }) {
       .update({
         urgent: toggleUrgent ? false : true,
       });
+    console.log("toggle urgent", task.taskName);
   };
 
   // delete
@@ -95,18 +97,18 @@ export default function Task({ task, userInfo, list, completed }) {
           {/* completed */}
           <div className="icon-container" onClick={handleToggleCompleted}>
             {toggleCompleted ? (
-              <CheckCircleIcon className="completedIcon" />
+              <CheckCircleIcon className={`${task.completed}-completed`} />
             ) : (
-              <RadioButtonUncheckedIcon className="incompleteIcon" />
+              <CheckCircleIcon className={`${task.completed}-completed`} />
             )}
           </div>
 
           {/* urgent */}
           <div className="icon-container" onClick={handleToggleUrgent}>
             {toggleUrgent ? (
-              <PriorityHighIcon className="urgentIcon" />
+              <PriorityHighIcon className={`${task.urgent}-urgent`} />
             ) : (
-              <PriorityHighIcon className="urgentIconFaded" />
+              <PriorityHighIcon className={`${task.urgent}-urgent`} />
             )}
           </div>
 
@@ -127,7 +129,10 @@ export default function Task({ task, userInfo, list, completed }) {
             <CreateIcon className="create-icon" />
             {formatDate(task.due)}
           </p>
-          <div className="icon-container" onClick={handleDeleteTask}>
+          <div
+            className="icon-container"
+            onClick={() => setShowDelete((showDelete) => !showDelete)}
+          >
             <CloseIcon className="closeIcon" />
           </div>
         </div>
@@ -139,9 +144,18 @@ export default function Task({ task, userInfo, list, completed }) {
             task={task}
             userInfo={userInfo}
             list={list}
-            completed={completed}
             showEdit={showEdit}
             setShowEdit={setShowEdit}
+          />
+        </div>
+      )}
+
+      {showDelete && (
+        <div className="edit-contianer">
+          <Delete
+            handleDeleteTask={handleDeleteTask}
+            showDelete={showDelete}
+            setShowDelete={setShowDelete}
           />
         </div>
       )}

@@ -5,32 +5,68 @@ import "./list.scss";
 import Task from "./task/Task";
 import db from "../../lib/firebase";
 import { Suspense } from "react";
+// icons
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
+import TodayIcon from "@material-ui/icons/Today";
 
 export default function List({ list, userInfo }) {
-  console.log("list", list);
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
   const isInvalid = input === "";
+  const [sort, setSort] = useState("due");
+  const [dir, setDir] = useState("asc");
 
   useEffect(() => {
+    console.log("😜", sort);
     db.collection("users")
       .doc(userInfo.docId)
       .collection("lists")
       .doc(list.listId)
       .collection("tasks")
+      .orderBy(sort, dir)
       .onSnapshot((snapshot) => {
-        console.log(
-          "snapshot",
-          snapshot.docs.map((doc) => doc.data())
-        );
         setTasks(snapshot.docs.map((doc) => doc.data()));
       });
-  }, [list]);
+  }, [list, sort, dir]);
 
   const handleAddTask = (event) => {
     event.preventDefault();
     addTask(list.listId, userInfo.docId, input);
     setInput("");
+  };
+
+  const sortByDate = () => {
+    setSort("due");
+    setDir("asc");
+    // tasks.sort(function compare(a, b) {
+    //   var dateA = new Date(a.due);
+    //   var dateB = new Date(b.due);
+    //   return dateA - dateB;
+    // });
+    console.log("sorted by DATE", tasks);
+  };
+
+  const sortByPriority = () => {
+    setSort("urgent");
+    setDir("desc");
+    // tasks.sort(function compare(a, b) {
+    //   var taskA = a.urgent;
+    //   var taskB = b.urgent;
+    //   return taskA === taskB ? 0 : taskA ? -1 : 1;
+    // });
+    console.log("sorted by PRIORITY", tasks);
+  };
+
+  const sortByStatus = () => {
+    setSort("completed");
+    setDir("desc");
+    // tasks.sort(function compare(a, b) {
+    //   var taskA = a.completed;
+    //   var taskB = b.completed;
+    //   return taskA === taskB ? 0 : taskA ? -1 : 1;
+    // });
+    console.log("sorted by STATUS", tasks);
   };
 
   return (
@@ -60,6 +96,27 @@ export default function List({ list, userInfo }) {
             </>
           ))}
         </Suspense>
+      </div>
+      <div className="sortbar">
+        <button onClick={() => sortByStatus()}>
+          <CheckCircleIcon
+            className={
+              sort === "completed" ? "sort-status active" : "sort-status"
+            }
+          />
+        </button>
+        <button onClick={() => sortByPriority()}>
+          <PriorityHighIcon
+            className={
+              sort === "urgent" ? "sort-priority active" : "sort-priority"
+            }
+          />
+        </button>
+        <button onClick={() => sortByDate()}>
+          <TodayIcon
+            className={sort === "due" ? "sort-date active" : "sort-date"}
+          />
+        </button>
       </div>
     </div>
   );

@@ -1,0 +1,49 @@
+@import "../../../../global.scss";
+
+.delete-item {
+  color: $textColor;
+  display: flex;
+  background-color: $navbarColor;
+  align-items: center;
+  min-height: 55.6px;
+  justify-content: center;
+
+  button {
+    font-size: 16px;
+    padding: 8px 12px;
+    color: $textColor;
+    background-color: $listColor;
+    border: none;
+    outline: none;
+    margin: 0px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.12s linear;
+  }
+
+  .cancel {
+    color: $accentColor;
+
+    &:hover {
+      background-color: $accentColor;
+      color: $listColor;
+    }
+
+    &:focus {
+      box-shadow: 0px 0px 0px 1px $accentColor;
+    }
+  }
+
+  .delete {
+    color: $urgentRed;
+
+    &:hover {
+      background-color: $urgentRed;
+      color: $listColor;
+    }
+
+    &:focus {
+      box-shadow: 0px 0px 0px 1px $urgentRed;
+    }
+  }
+}

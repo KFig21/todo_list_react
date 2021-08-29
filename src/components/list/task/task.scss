@@ -11,6 +11,10 @@
     min-height: 55.6px;
     justify-content: space-between;
 
+    @include mobile {
+      padding-left: 10px;
+    }
+
     .left {
       display: flex;
 
@@ -19,10 +23,15 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        width: 30px;
+        min-width: 30px;
+        @include mobile {
+          width: 25px;
+          min-width: 25px;
+        }
 
-        .completedIcon {
+        .true-completed {
           font-size: 20px;
-          margin-right: 15px;
           color: $completedGreen;
           transition: all 0.12s linear;
 
@@ -31,10 +40,9 @@
           }
         }
 
-        .incompleteIcon {
+        .false-completed {
           font-size: 16px;
           padding: 2px;
-          margin-right: 15px;
           color: $borderGray;
           transition: all 0.12s linear;
 
@@ -43,17 +51,15 @@
           }
         }
 
-        .urgentIcon {
+        .true-urgent {
           font-size: 16px;
-          margin-right: 15px;
           padding: 2px;
           background-color: $urgentRed;
           border-radius: 50%;
         }
 
-        .urgentIconFaded {
+        .false-urgent {
           font-size: 16px;
-          margin-right: 15px;
           padding: 2px;
           color: $borderGray;
           background-color: transparent;
@@ -67,6 +73,7 @@
       .task {
         cursor: pointer;
         line-height: 15px;
+        padding-left: 10px;
 
         &:hover {
           .create-icon {
@@ -80,6 +87,10 @@
           margin-left: 10px;
           font-size: 12px;
           transition: all 0.12s linear;
+
+          @include mobile {
+            display: none;
+          }
         }
       }
     }
@@ -93,6 +104,10 @@
         align-items: center;
         justify-content: center;
 
+        @include mobile {
+          padding: 0px 10px;
+        }
+
         &:hover {
           .create-icon {
             opacity: 1;
@@ -105,6 +120,10 @@
           margin-right: 10px;
           font-size: 12px;
           transition: all 0.12s linear;
+
+          @include mobile {
+            display: none;
+          }
         }
       }
 
@@ -113,6 +132,11 @@
         align-items: center;
         justify-content: center;
         width: 30px;
+
+        @include mobile {
+          width: 25px;
+          min-width: 25px;
+        }
 
         .closeIcon {
           background-color: transparent;

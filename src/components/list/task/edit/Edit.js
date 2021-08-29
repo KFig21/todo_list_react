@@ -5,7 +5,7 @@ import db from "../../../../lib/firebase";
 import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
 
-export default function Task({ task, userInfo, list, showEdit, setShowEdit }) {
+export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
   const [inputName, setInputName] = useState("");
   const [inputDue, setInputDue] = useState("");
 
