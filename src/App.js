@@ -13,6 +13,7 @@ const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 
 function App() {
   const { user } = useAuthListener();
+
   return (
     <UserContext.Provider value={{ user }}>
       <Router basename="/todo_list_react">

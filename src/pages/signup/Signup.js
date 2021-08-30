@@ -4,7 +4,7 @@ import React, { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../../context/firebase";
 import * as ROUTES from "../../constants/routes";
 import { doesUsernameExist } from "../../services/firebase";
-import Navbar from "../../components/navbar/Navbar";
+// import Navbar from "../../components/navbar/Navbar";
 
 export default function Signup() {
   const history = useHistory();

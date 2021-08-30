@@ -8,10 +8,11 @@ import "./dashboard.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import List from "../../components/list/List";
+import EditList from "../../components/editList/EditList";
 import db from "../../lib/firebase";
 import { useHistory } from "react-router-dom";
 
-export default function Main() {
+export default function Dashboard() {
   const emptyList = {
     listName: "",
     tasks: [{ taskName: "none" }],
@@ -25,7 +26,10 @@ export default function Main() {
   const { userInfo } = useUser();
   const [lists, setLists] = useState(emptyArr);
   const [currentList, setCurrentList] = useState(emptyList);
+  const [tasks, setTasks] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showListEdit, setShowListEdit] = useState(false);
+  const [showDeleteList, setShowDeleteList] = useState(false);
   const history = useHistory();
 
   // load lists upon initial load
@@ -49,10 +53,6 @@ export default function Main() {
       .doc(userInfo.docId)
       .collection("lists")
       .onSnapshot((snapshot) => {
-        console.log(
-          "snapshot",
-          snapshot.docs.map((doc) => doc.data())
-        );
         setLists(snapshot.docs.map((doc) => doc.data()));
       });
   }, [currentList]);
@@ -66,9 +66,23 @@ export default function Main() {
   return (
     <div className="main">
       <Navbar
-        title={currentList.listName}
+        list={currentList}
+        userInfo={userInfo}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        showListEdit={showListEdit}
+        setShowListEdit={setShowListEdit}
+        setShowDeleteList={setShowDeleteList}
+      />
+      <EditList
+        list={currentList}
+        userInfo={userInfo}
+        showListEdit={showListEdit}
+        setShowListEdit={setShowListEdit}
+        showDeleteList={showDeleteList}
+        setShowDeleteList={setShowDeleteList}
+        setSidebarOpen={setSidebarOpen}
+        setTasks={setTasks}
       />
       <Sidebar
         lists={lists}
@@ -78,7 +92,12 @@ export default function Main() {
         setSidebarOpen={setSidebarOpen}
         user={user}
       />
-      <List list={currentList} userInfo={userInfo} />
+      <List
+        list={currentList}
+        userInfo={userInfo}
+        tasks={tasks}
+        setTasks={setTasks}
+      />
     </div>
   );
 }

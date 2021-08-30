@@ -14,8 +14,6 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
   }
 
   const handleSaveName = async () => {
-    console.log("save name");
-
     await db
       .collection("users")
       .doc(userInfo.docId)
@@ -60,7 +58,7 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
   };
 
   return (
-    <div className="edit-item">
+    <div className={showEdit ? "edit-item" : "edit-item inactive"}>
       <CloseIcon
         className="close-edit"
         onClick={() => setShowEdit(!showEdit)}

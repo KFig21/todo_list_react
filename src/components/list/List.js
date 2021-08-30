@@ -5,30 +5,27 @@ import "./list.scss";
 import Task from "./task/Task";
 import db from "../../lib/firebase";
 import { Suspense } from "react";
-// icons
+// icons for sorting
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
-import TodayIcon from "@material-ui/icons/Today";
+import RefreshIcon from "@material-ui/icons/Refresh";
 
-export default function List({ list, userInfo }) {
-  const [tasks, setTasks] = useState([]);
+export default function List({ list, userInfo, tasks, setTasks }) {
   const [input, setInput] = useState("");
   const isInvalid = input === "";
-  const [sort, setSort] = useState("due");
-  const [dir, setDir] = useState("asc");
 
+  // update tasks
   useEffect(() => {
-    console.log("😜", sort);
     db.collection("users")
       .doc(userInfo.docId)
       .collection("lists")
       .doc(list.listId)
       .collection("tasks")
-      .orderBy(sort, dir)
+      .orderBy("due", "asc")
       .onSnapshot((snapshot) => {
         setTasks(snapshot.docs.map((doc) => doc.data()));
       });
-  }, [list, sort, dir]);
+  }, [list]);
 
   const handleAddTask = (event) => {
     event.preventDefault();
@@ -37,36 +34,27 @@ export default function List({ list, userInfo }) {
   };
 
   const sortByDate = () => {
-    setSort("due");
-    setDir("asc");
-    // tasks.sort(function compare(a, b) {
-    //   var dateA = new Date(a.due);
-    //   var dateB = new Date(b.due);
-    //   return dateA - dateB;
-    // });
-    console.log("sorted by DATE", tasks);
+    db.collection("users")
+      .doc(userInfo.docId)
+      .collection("lists")
+      .doc(list.listId)
+      .collection("tasks")
+      .orderBy("due", "asc")
+      .onSnapshot((snapshot) => {
+        setTasks(snapshot.docs.map((doc) => doc.data()));
+      });
   };
 
-  const sortByPriority = () => {
-    setSort("urgent");
-    setDir("desc");
-    // tasks.sort(function compare(a, b) {
-    //   var taskA = a.urgent;
-    //   var taskB = b.urgent;
-    //   return taskA === taskB ? 0 : taskA ? -1 : 1;
-    // });
-    console.log("sorted by PRIORITY", tasks);
-  };
-
-  const sortByStatus = () => {
-    setSort("completed");
-    setDir("desc");
-    // tasks.sort(function compare(a, b) {
-    //   var taskA = a.completed;
-    //   var taskB = b.completed;
-    //   return taskA === taskB ? 0 : taskA ? -1 : 1;
-    // });
-    console.log("sorted by STATUS", tasks);
+  const filterBy = (item, bool) => {
+    db.collection("users")
+      .doc(userInfo.docId)
+      .collection("lists")
+      .doc(list.listId)
+      .collection("tasks")
+      .where(item, "==", bool)
+      .onSnapshot((snapshot) => {
+        setTasks(snapshot.docs.map((doc) => doc.data()));
+      });
   };
 
   return (
@@ -85,36 +73,31 @@ export default function List({ list, userInfo }) {
           </form>
         )}
         <div className="tasks-container">
-          {tasks.map((item) => (
+          {tasks.map((item, index) => (
             <>
               <Task
                 task={item}
                 userInfo={userInfo}
                 list={list}
                 completed={item.completed}
+                index={index}
               />
             </>
           ))}
         </div>
+
         <div className="sortbar">
-          <button onClick={() => sortByStatus()}>
-            <CheckCircleIcon
-              className={
-                sort === "completed" ? "sort-status active" : "sort-status"
-              }
-            />
+          <button onClick={() => filterBy("completed", false)}>
+            <CheckCircleIcon className="incomplete-filter" />
           </button>
-          <button onClick={() => sortByPriority()}>
-            <PriorityHighIcon
-              className={
-                sort === "urgent" ? "sort-priority active" : "sort-priority"
-              }
-            />
+          <button onClick={() => filterBy("completed", true)}>
+            <CheckCircleIcon className="completed-filter" />
+          </button>
+          <button onClick={() => filterBy("urgent", true)}>
+            <PriorityHighIcon className="priority-filter" />
           </button>
           <button onClick={() => sortByDate()}>
-            <TodayIcon
-              className={sort === "due" ? "sort-date active" : "sort-date"}
-            />
+            <RefreshIcon className="refresh" />
           </button>
         </div>
       </div>

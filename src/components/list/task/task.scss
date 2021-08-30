@@ -35,9 +35,9 @@
           color: $completedGreen;
           transition: all 0.12s linear;
 
-          // &:hover {
-          //   opacity: 0.7;
-          // }
+          &:hover {
+            opacity: 0.83;
+          }
         }
 
         .false-completed {
@@ -45,10 +45,11 @@
           padding: 2px;
           color: $borderGray;
           transition: all 0.12s linear;
+          opacity: 0.5;
 
-          // &:hover {
-          //   color: $completedGreen;
-          // }
+          &:hover {
+            color: $completedGreen;
+          }
         }
 
         .true-urgent {
@@ -65,9 +66,9 @@
           background-color: transparent;
           transition: all 0.12s linear;
 
-          // &:hover {
-          //   color: $urgentRed;
-          // }
+          &:hover {
+            color: $urgentRed;
+          }
         }
       }
       .task {
@@ -156,5 +157,8 @@
         }
       }
     }
+  }
+  .edit-container {
+    position: relative;
   }
 }

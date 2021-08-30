@@ -9,7 +9,7 @@ import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
 import CloseIcon from "@material-ui/icons/Close";
 import CreateIcon from "@material-ui/icons/Create";
 
-export default function Task({ task, userInfo, list, completed, sort }) {
+export default function Task({ task, userInfo, list, completed, sort, index }) {
   const [toggleCompleted, setToggleCompleted] = useState(completed);
   const [toggleUrgent, setToggleUrgent] = useState(task.urgent);
   const [showEdit, setShowEdit] = useState(false);
@@ -38,7 +38,6 @@ export default function Task({ task, userInfo, list, completed, sort }) {
       .update({
         completed: toggleCompleted ? false : true,
       });
-    console.log("toggle complete", task.taskName);
   };
 
   // urgent
@@ -64,7 +63,6 @@ export default function Task({ task, userInfo, list, completed, sort }) {
       .update({
         urgent: toggleUrgent ? false : true,
       });
-    console.log("toggle urgent", task.taskName);
   };
 
   // delete
@@ -87,11 +85,11 @@ export default function Task({ task, userInfo, list, completed, sort }) {
   };
 
   function formatDate(date) {
-    return new Date(date).toLocaleDateString("en-US");
+    return new Date(date).toLocaleDateString("en-US", { timeZone: "UTC" });
   }
 
   return (
-    <div className="list-item-container">
+    <div className="list-item-container" key={index}>
       <div className="list-item">
         <div className="left">
           {/* completed */}

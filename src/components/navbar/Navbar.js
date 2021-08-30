@@ -1,19 +1,39 @@
-import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./navbar.scss";
-import FirebaseContext from "../../context/firebase";
 import UserContext from "../../context/user";
-import useUser from "../../hooks/use-user";
+import db from "../../lib/firebase";
 // icons
 import MenuIcon from "@material-ui/icons/Menu";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
-export default function Navbar({ title, sidebarOpen, setSidebarOpen }) {
-  const { firebase } = useContext(FirebaseContext);
+export default function Navbar({
+  list,
+  userInfo,
+  sidebarOpen,
+  setSidebarOpen,
+  showListEdit,
+  setShowListEdit,
+  setShowDeleteList,
+}) {
   const { user } = useContext(UserContext);
-  const { userInfo } = useUser();
-  const history = useHistory();
-  let navTitle = title === undefined ? "To-Do List" : title;
+  const [title, setTitle] = useState(list.listName);
+
+  // update list name
+  useEffect(() => {
+    db.collection("users")
+      .doc(userInfo.docId)
+      .collection("lists")
+      .doc(list.listId)
+      .onSnapshot((snapshot) => {
+        !snapshot.data() ? setTitle(title) : setTitle(snapshot.data().listName);
+      });
+  }, [list]);
+
+  const handleCloseLists = () => {
+    setShowListEdit(!showListEdit);
+    setShowDeleteList(false);
+  };
 
   return (
     <div className="navbar">
@@ -28,7 +48,7 @@ export default function Navbar({ title, sidebarOpen, setSidebarOpen }) {
         </div>
         <div className="middle">
           <Link className="link-title" to="/">
-            <h2>{`${navTitle}`}</h2>
+            {title === undefined ? <h2></h2> : <h2>{`${title}`}</h2>}
           </Link>
         </div>
         <div className="right">
@@ -41,6 +61,12 @@ export default function Navbar({ title, sidebarOpen, setSidebarOpen }) {
                 <button>Signup</button>
               </Link>
             </>
+          )}
+          {user && (
+            <MoreVertIcon
+              className="edit-list-icon"
+              onClick={() => handleCloseLists()}
+            />
           )}
         </div>
       </div>

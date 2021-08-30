@@ -37,8 +37,8 @@ export default function Sidebar({
   return (
     <div className={"sidebar " + (sidebarOpen && "active")}>
       <div className="sidebar-list">
-        {lists.map((list) => (
-          <div className="sidebar-list-item">
+        {lists.map((list, index) => (
+          <div className="sidebar-list-item" key={`sidebar-${index}`}>
             <span className="list-name" onClick={() => handleListClick(list)}>
               {list.listName}
             </span>
@@ -52,6 +52,7 @@ export default function Sidebar({
             <input
               placeholder="Add a list"
               value={input}
+              maxLength={20}
               onChange={(e) => setInput(e.target.value)}
             />
           </form>

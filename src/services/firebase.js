@@ -1,4 +1,5 @@
-import { firebase, FieldValue } from "../lib/firebase";
+// import { firebase, FieldValue } from "../lib/firebase";
+import { firebase } from "../lib/firebase";
 
 export async function doesUsernameExist(username) {
   const result = await firebase
@@ -72,15 +73,6 @@ export async function getTasksFromListId(listId, userId) {
 
 // add task ✔
 export async function addTask(listId, userId, input) {
-  // var taskDocRef = await firebase
-  // .firestore()
-  // .collection("users")
-  // .doc(userId)
-  // .collection("lists")
-  // .doc(listId)
-  // .collection("tasks")
-  // .doc();
-
   var userDocRef = await firebase.firestore().collection("users").doc(userId);
 
   var listsDocRef = userDocRef.collection("lists").doc(listId);
