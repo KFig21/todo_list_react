@@ -59,10 +59,12 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
 
   return (
     <div className={showEdit ? "edit-item" : "edit-item inactive"}>
-      <CloseIcon
-        className="close-edit"
-        onClick={() => setShowEdit(!showEdit)}
-      />
+      <button>
+        <CloseIcon
+          className="close-edit"
+          onClick={() => setShowEdit(!showEdit)}
+        />
+      </button>
       <div className="info">
         <p>Task:</p>
         <div className="edit-input">
@@ -72,7 +74,9 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
             placeholder={`${task.taskName}`}
             onChange={(e) => setInputName(e.target.value)}
           ></input>
-          <SaveIcon className="save-icon" onClick={() => handleSaveName()} />
+          <button>
+            <SaveIcon className="save-icon" onClick={() => handleSaveName()} />
+          </button>
         </div>
         <p>Due:</p>
         <div className="edit-input">
@@ -85,7 +89,9 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
             placeholder={`${formatDate(task.due)}`}
             onChange={(e) => setInputDue(e.target.value)}
           ></input>
-          <SaveIcon className="save-icon" onClick={() => handleSaveDate()} />
+          <button>
+            <SaveIcon className="save-icon" onClick={() => handleSaveDate()} />
+          </button>
         </div>
         <p>Created:</p>
         <p>{formatDate(task.dateCreated)}</p>

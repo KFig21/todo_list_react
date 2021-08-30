@@ -62,7 +62,9 @@ export default function EditList({
             placeholder={`${list.listName}`}
             onChange={(e) => setInputName(e.target.value)}
           />
-          <SaveIcon className="save-icon" onClick={() => handleSaveName()} />
+          <button>
+            <SaveIcon className="save-icon" onClick={() => handleSaveName()} />
+          </button>
         </div>
         <div className="delete-container">
           <CloseIcon

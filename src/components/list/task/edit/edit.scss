@@ -27,7 +27,8 @@
     }
 
     .edit-input {
-      display: flex;
+      display: grid;
+      grid-template-columns: 200px 45px;
       align-items: center;
       justify-content: left;
 
@@ -55,16 +56,53 @@
           filter: invert(1);
         }
       }
+
+      button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        border-radius: 3px;
+        padding: 4.5px;
+
+        &:focus {
+          border: solid 1px $accentColor;
+        }
+      }
     }
 
     .save-icon {
       color: $textColor;
       transition: all 0.12s linear;
-      margin-left: 10px;
       cursor: pointer;
 
       &:hover {
         color: $accentColor;
+      }
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:focus {
+      .close-edit {
+        color: $listColor;
+        background-color: $accentColor;
+        border-radius: 50px;
+        opacity: 1;
+        padding: 2px;
+        margin: 18px 0px 10px 0px;
+        transition: all 0.12s linear;
+        cursor: pointer;
       }
     }
   }

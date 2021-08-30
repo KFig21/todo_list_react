@@ -37,7 +37,8 @@
     }
 
     .edit-input {
-      display: flex;
+      display: grid;
+      grid-template-columns: 200px 45px;
       align-items: center;
       justify-content: left;
 
@@ -45,6 +46,7 @@
         background-color: $listColor;
         border: none;
         outline: none;
+        margin-left: 3px;
         padding: 6px 10px;
         border-radius: 3px;
         color: $textColor;
@@ -65,12 +67,27 @@
           filter: invert(1);
         }
       }
+
+      button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        border-radius: 3px;
+        padding: 4.5px;
+
+        &:focus {
+          border: solid 1px $accentColor;
+        }
+      }
     }
 
     .save-icon {
       color: $textColor;
       transition: all 0.12s linear;
-      margin-left: 10px;
       cursor: pointer;
 
       &:hover {
