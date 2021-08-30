@@ -97,6 +97,8 @@ export default function Dashboard() {
         userInfo={userInfo}
         tasks={tasks}
         setTasks={setTasks}
+        setShowListEdit={setShowListEdit}
+        setShowDeleteList={setShowDeleteList}
       />
     </div>
   );

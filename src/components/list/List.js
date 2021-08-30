@@ -10,7 +10,14 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
-export default function List({ list, userInfo, tasks, setTasks }) {
+export default function List({
+  list,
+  userInfo,
+  tasks,
+  setTasks,
+  setShowListEdit,
+  setShowDeleteList,
+}) {
   const [input, setInput] = useState("");
   const isInvalid = input === "";
 
@@ -23,6 +30,7 @@ export default function List({ list, userInfo, tasks, setTasks }) {
       .collection("tasks")
       .orderBy("due", "asc")
       .onSnapshot((snapshot) => {
+        console.log("update");
         setTasks(snapshot.docs.map((doc) => doc.data()));
       });
   }, [list]);
@@ -41,25 +49,23 @@ export default function List({ list, userInfo, tasks, setTasks }) {
       .collection("tasks")
       .orderBy("due", "asc")
       .onSnapshot((snapshot) => {
+        console.log("refresh-----");
         setTasks(snapshot.docs.map((doc) => doc.data()));
       });
   };
 
   const filterBy = (item, bool) => {
-    db.collection("users")
-      .doc(userInfo.docId)
-      .collection("lists")
-      .doc(list.listId)
-      .collection("tasks")
-      .where(item, "==", bool)
-      .onSnapshot((snapshot) => {
-        setTasks(snapshot.docs.map((doc) => doc.data()));
-      });
+    setTasks(tasks.filter((task) => task[item] === bool));
+  };
+
+  const handleCloseListEdit = () => {
+    setShowListEdit(false);
+    setShowDeleteList(false);
   };
 
   return (
     <Suspense fallback={<p className="suspense">loading...</p>}>
-      <div className="list">
+      <div className="list" onClick={() => handleCloseListEdit()}>
         {list.listId !== undefined && (
           <form className="add">
             <button disabled={isInvalid} type="submit" onClick={handleAddTask}>
@@ -86,7 +92,7 @@ export default function List({ list, userInfo, tasks, setTasks }) {
           ))}
         </div>
 
-        <div className="sortbar">
+        <div className="filterbar">
           <button onClick={() => filterBy("completed", false)}>
             <CheckCircleIcon className="incomplete-filter" />
           </button>
@@ -96,7 +102,7 @@ export default function List({ list, userInfo, tasks, setTasks }) {
           <button onClick={() => filterBy("urgent", true)}>
             <PriorityHighIcon className="priority-filter" />
           </button>
-          <button onClick={() => sortByDate()}>
+          <button className="refresh-button" onClick={() => sortByDate()}>
             <RefreshIcon className="refresh" />
           </button>
         </div>
