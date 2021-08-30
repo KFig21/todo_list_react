@@ -108,6 +108,7 @@ export default function Dashboard() {
         setTasks={setTasks}
         setShowListEdit={setShowListEdit}
         setShowDeleteList={setShowDeleteList}
+        setSidebarOpen={setSidebarOpen}
       />
     </div>
   );

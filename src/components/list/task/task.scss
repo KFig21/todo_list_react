@@ -12,11 +12,13 @@
     justify-content: space-between;
 
     @include mobile {
-      padding-left: 10px;
+      padding-left: 5px;
     }
 
     .left {
       display: flex;
+      align-items: center;
+      justify-content: center;
 
       .icon-container {
         display: flex;
@@ -24,11 +26,14 @@
         justify-content: center;
         cursor: pointer;
         width: 30px;
+        height: 30px;
         min-width: 30px;
 
         @include mobile {
           width: 25px;
+          height: 25px;
           min-width: 25px;
+          padding: 0px 2px;
         }
 
         .true-completed {
@@ -104,6 +109,8 @@
     }
     .right {
       display: flex;
+      align-items: center;
+      justify-content: center;
 
       .date {
         padding: 0px 20px;
@@ -113,7 +120,7 @@
         justify-content: center;
 
         @include mobile {
-          padding: 0px 10px;
+          padding: 0px 4px 0px 8px;
         }
 
         &:hover {
@@ -140,9 +147,11 @@
         align-items: center;
         justify-content: center;
         width: 30px;
+        height: 30px;
 
         @include mobile {
           width: 25px;
+          height: 25px;
           min-width: 25px;
         }
 

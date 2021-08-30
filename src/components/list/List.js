@@ -17,6 +17,7 @@ export default function List({
   setTasks,
   setShowListEdit,
   setShowDeleteList,
+  setSidebarOpen,
 }) {
   const [input, setInput] = useState("");
   const isInvalid = input === "";
@@ -61,6 +62,7 @@ export default function List({
   const handleCloseListEdit = () => {
     setShowListEdit(false);
     setShowDeleteList(false);
+    setSidebarOpen(false);
   };
 
   return (
