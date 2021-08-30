@@ -25,6 +25,7 @@
         cursor: pointer;
         width: 30px;
         min-width: 30px;
+
         @include mobile {
           width: 25px;
           min-width: 25px;
@@ -38,6 +39,15 @@
           &:hover {
             opacity: 0.83;
           }
+
+          @include mobile {
+            &:hover {
+              opacity: initial;
+            }
+            &:focus {
+              opacity: initial;
+            }
+          }
         }
 
         .false-completed {
@@ -49,6 +59,15 @@
 
           &:hover {
             color: $completedGreen;
+          }
+
+          @include mobile {
+            &:hover {
+              color: $borderGray;
+            }
+            &:focus {
+              color: $borderGray;
+            }
           }
         }
 
@@ -68,6 +87,15 @@
 
           &:hover {
             color: $urgentRed;
+          }
+
+          @include mobile {
+            &:hover {
+              color: $borderGray;
+            }
+            &:focus {
+              color: $borderGray;
+            }
           }
         }
       }
