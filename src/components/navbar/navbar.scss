@@ -2,18 +2,21 @@
 
 .navbar {
   // gradient background
-  background: rgb(93, 93, 93);
-  background: linear-gradient(
-    180deg,
-    rgb(50, 52, 52) 0%,
-    rgb(46, 46, 47) 25%,
-    rgb(39, 39, 40) 49%,
-    rgb(32, 32, 35) 50%,
-    rgb(36, 37, 37) 75%,
-    rgb(40, 40, 41) 100%
-  );
+
+  // background: rgb(93, 93, 93);
+  // background: linear-gradient(
+  //   180deg,
+  //   rgb(50, 52, 52) 0%,
+  //   rgb(46, 46, 47) 25%,
+  //   rgb(39, 39, 40) 49%,
+  //   rgb(32, 32, 35) 50%,
+  //   rgb(36, 37, 37) 75%,
+  //   rgb(40, 40, 41) 100%
+  // );
+
   // regular background
   background-color: $navbarColor;
+
   color: $textColor;
   position: fixed;
   top: 0;

@@ -26,6 +26,11 @@ export default function Login() {
     }
   };
 
+  const handleVisitor = () => {
+    setEmailAddress("Visitor@mail.com");
+    setPassword("password");
+  };
+
   useEffect(() => {
     isInvalid ? setButtonClass("disabled") : setButtonClass("able");
   }, [isInvalid]);
@@ -72,6 +77,9 @@ export default function Login() {
             <Link to={ROUTES.SIGN_UP} className="link">
               Signup
             </Link>
+          </div>
+          <div className="visitor-container">
+            <button onClick={() => handleVisitor()}>Just visiting?</button>
           </div>
         </div>
       </div>

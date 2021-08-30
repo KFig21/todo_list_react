@@ -66,6 +66,12 @@ export default function Dashboard() {
     }
   }, [user]);
 
+  useEffect(() => {
+    currentList.listName === ""
+      ? (document.title = `To Do`)
+      : (document.title = `To Do - ${currentList.listName}`);
+  }, [currentList]);
+
   return (
     <div className="main">
       <Navbar
