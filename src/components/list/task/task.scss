@@ -40,12 +40,9 @@
             opacity: 0.83;
           }
 
-          @include mobile {
+          @media (hover: none) {
             &:hover {
-              opacity: initial;
-            }
-            &:focus {
-              opacity: initial;
+              opacity: 1;
             }
           }
         }
@@ -61,11 +58,8 @@
             color: $completedGreen;
           }
 
-          @include mobile {
+          @media (hover: none) {
             &:hover {
-              color: $borderGray;
-            }
-            &:focus {
               color: $borderGray;
             }
           }
@@ -89,11 +83,9 @@
             color: $urgentRed;
           }
 
-          @include mobile {
+          @media (hover: none) {
             &:hover {
-              color: $borderGray;
-            }
-            &:focus {
+              background: inherit;
               color: $borderGray;
             }
           }
