@@ -76,6 +76,7 @@ export default function List({
             <input
               placeholder="Add a task"
               value={input}
+              maxLength={1000}
               onChange={(e) => setInput(e.target.value)}
             />
           </form>

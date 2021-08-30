@@ -13,16 +13,16 @@ $urgentRed: crimson;
 
 $navbarHeight: 8vh;
 
-$width: 768px;
+$mobileWidth: 768px;
 
 @mixin mobile {
-  @media (max-width: #{$width}) {
+  @media (max-width: #{$mobileWidth}) {
     @content;
   }
 }
 
 @mixin notOnMobile {
-  @media (min-width: #{$width}) {
+  @media (min-width: #{$mobileWidth}) {
     @content;
   }
 }

@@ -68,6 +68,7 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
         <div className="edit-input">
           <input
             type="text"
+            maxLength={1000}
             placeholder={`${task.taskName}`}
             onChange={(e) => setInputName(e.target.value)}
           ></input>
