@@ -21,6 +21,12 @@ $width: 768px;
   }
 }
 
+@mixin notOnMobile {
+  @media (min-width: #{$width}) {
+    @content;
+  }
+}
+
 // scrollbar
 ::-webkit-scrollbar {
   width: 8px;

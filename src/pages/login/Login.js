@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import React, { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../../context/firebase";
 import * as ROUTES from "../../constants/routes";
-// import Navbar from "../../components/navbar/Navbar";
 
 export default function Login() {
   const history = useHistory();
@@ -36,8 +35,6 @@ export default function Login() {
   }, []);
   return (
     <>
-      {/* <Navbar /> */}
-
       <div className="signup">
         <div className="container">
           <div className="modal">

@@ -36,13 +36,9 @@
           color: $completedGreen;
           transition: all 0.12s linear;
 
-          &:hover {
-            opacity: 0.83;
-          }
-
-          @media (hover: none) {
+          @include notOnMobile {
             &:hover {
-              opacity: 1;
+              opacity: 0.83;
             }
           }
         }
@@ -54,13 +50,9 @@
           transition: all 0.12s linear;
           opacity: 0.5;
 
-          &:hover {
-            color: $completedGreen;
-          }
-
-          @media (hover: none) {
+          @include notOnMobile {
             &:hover {
-              color: $borderGray;
+              color: $completedGreen;
             }
           }
         }
@@ -79,14 +71,9 @@
           background-color: transparent;
           transition: all 0.12s linear;
 
-          &:hover {
-            color: $urgentRed;
-          }
-
-          @media (hover: none) {
+          @include notOnMobile {
             &:hover {
-              background: inherit;
-              color: $borderGray;
+              color: $urgentRed;
             }
           }
         }

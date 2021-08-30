@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { addList } from "../../services/firebase";
 import { useHistory } from "react-router-dom";
+import "./sidebar.scss";
 import FirebaseContext from "../../context/firebase";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import "./sidebar.scss";
 
 export default function Sidebar({
   lists,

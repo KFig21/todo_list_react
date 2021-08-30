@@ -1,18 +1,20 @@
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import "./dashboard.scss";
 import UserContext from "../../context/user";
 import useUser from "../../hooks/use-user";
 import { getListsByDocId } from "../../services/firebase";
-import "./dashboard.scss";
+import db from "../../lib/firebase";
+//components
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import List from "../../components/list/List";
 import EditList from "../../components/editList/EditList";
-import db from "../../lib/firebase";
-import { useHistory } from "react-router-dom";
 
 export default function Dashboard() {
+  // dummy imputs to keep initial load from returning undefined
   const emptyList = {
     listName: "",
     tasks: [{ taskName: "none" }],
@@ -22,10 +24,11 @@ export default function Dashboard() {
     tasks: [{ taskName: "none" }],
   };
   const emptyArr = [emptyList, emptyList2];
-  const { user } = useContext(UserContext);
-  const { userInfo } = useUser();
   const [lists, setLists] = useState(emptyArr);
   const [currentList, setCurrentList] = useState(emptyList);
+
+  const { user } = useContext(UserContext);
+  const { userInfo } = useUser();
   const [tasks, setTasks] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showListEdit, setShowListEdit] = useState(false);

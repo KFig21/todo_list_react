@@ -48,7 +48,7 @@ export default function Navbar({
         </div>
         <div className="middle">
           <Link className="link-title" to="/">
-            {title === undefined ? <h2></h2> : <h2>{`${title}`}</h2>}
+            {title === undefined ? <h2> </h2> : <h2>{`${title}`}</h2>}
           </Link>
         </div>
         <div className="right">

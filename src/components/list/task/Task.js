@@ -110,6 +110,7 @@ export default function Task({ task, userInfo, list, completed, sort, index }) {
             )}
           </div>
 
+          {/* task name */}
           <p
             className="task"
             onClick={() => setShowEdit((showEdit) => !showEdit)}
@@ -120,6 +121,7 @@ export default function Task({ task, userInfo, list, completed, sort, index }) {
         </div>
 
         <div className="right">
+          {/* due date */}
           <p
             className="date"
             onClick={() => setShowEdit((showEdit) => !showEdit)}
@@ -127,6 +129,8 @@ export default function Task({ task, userInfo, list, completed, sort, index }) {
             <CreateIcon className="create-icon" />
             {formatDate(task.due)}
           </p>
+
+          {/* delete */}
           <div
             className="icon-container"
             onClick={() => setShowDelete((showDelete) => !showDelete)}

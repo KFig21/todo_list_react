@@ -79,7 +79,6 @@ export async function addTask(listId, userId, input) {
   var tasksInListDocRef = listsDocRef.collection("tasks").doc();
   var tasksMainDocRef = userDocRef.collection("tasks").doc();
   var dateCreated = Date.now();
-  // var dateCreated = new Date().toString().split(" ").splice(1, 3).join(" ");
 
   tasksInListDocRef.set({
     taskName: input,
@@ -102,7 +101,7 @@ export async function addTask(listId, userId, input) {
   });
 }
 
-// add list
+// add list ✔
 export async function addList(userId, input) {
   var listDocRef = await firebase
     .firestore()

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { addTask } from "../../services/firebase";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { Suspense } from "react";
 import "./list.scss";
 import Task from "./task/Task";
 import db from "../../lib/firebase";
-import { Suspense } from "react";
-// icons for sorting
+import { addTask } from "../../services/firebase";
+// icons
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
 import RefreshIcon from "@material-ui/icons/Refresh";
