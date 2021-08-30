@@ -94,9 +94,9 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
         ) : (
           <p>Incomplete</p>
         )}
-        <p>Urgency:</p>
+        <p>Priority:</p>
 
-        {task.urgent ? <p className="urgent-p">URGENT</p> : <p>Not urgent</p>}
+        {task.urgent ? <p className="urgent-p">HIGH</p> : <p>Low</p>}
       </div>
     </div>
   );
