@@ -105,6 +105,7 @@ export default function Signup() {
                 aria-label="Enter your username"
                 type="test"
                 placeholder="Username"
+                maxLength={14}
                 onChange={({ target }) => setUsername(target.value)}
                 value={username}
               />
@@ -113,6 +114,7 @@ export default function Signup() {
                 aria-label="Enter your full name"
                 type="test"
                 placeholder="Full name"
+                maxLength={30}
                 onChange={({ target }) => setFullName(target.value)}
                 value={fullName}
               />
@@ -121,6 +123,7 @@ export default function Signup() {
                 aria-label="Enter your email address"
                 type="test"
                 placeholder="Email address"
+                maxLength={50}
                 onChange={({ target }) => setEmailAddress(target.value)}
                 value={emailAddress}
               />
@@ -129,6 +132,7 @@ export default function Signup() {
                 aria-label="Enter your password"
                 type="password"
                 placeholder="Password"
+                maxLength={25}
                 onChange={({ target }) => setPassword(target.value)}
                 value={password}
               />

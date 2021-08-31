@@ -49,11 +49,11 @@ export default function Navbar({
         </div>
         <div className="middle">
           <Link className="link-title" to="/">
-            {title === undefined ? (
+            {title === undefined || title === "" ? (
               username === undefined ? (
-                <h2> </h2>
+                <h2>To Do</h2>
               ) : (
-                <h2>{`${username}`}</h2>
+                <h2>Welcome {`${username}`}</h2>
               )
             ) : (
               <h2>{`${title}`}</h2>
