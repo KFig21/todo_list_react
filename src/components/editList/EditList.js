@@ -16,6 +16,7 @@ export default function EditList({
   setTasks,
 }) {
   const [inputName, setInputName] = useState("");
+  const isInvalid = inputName === "";
 
   const handleSaveName = async () => {
     await db
@@ -62,8 +63,8 @@ export default function EditList({
             placeholder={`${list.listName}`}
             onChange={(e) => setInputName(e.target.value)}
           />
-          <button>
-            <SaveIcon className="save-icon" onClick={() => handleSaveName()} />
+          <button disabled={isInvalid} onClick={() => handleSaveName()}>
+            <SaveIcon className="save-icon" />
           </button>
         </div>
         <div className="delete-container">

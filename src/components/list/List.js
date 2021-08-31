@@ -31,7 +31,6 @@ export default function List({
       .collection("tasks")
       .orderBy("due", "asc")
       .onSnapshot((snapshot) => {
-        console.log("update");
         setTasks(snapshot.docs.map((doc) => doc.data()));
       });
   }, [list]);
@@ -50,7 +49,6 @@ export default function List({
       .collection("tasks")
       .orderBy("due", "asc")
       .onSnapshot((snapshot) => {
-        console.log("refresh-----");
         setTasks(snapshot.docs.map((doc) => doc.data()));
       });
   };

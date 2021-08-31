@@ -13,8 +13,9 @@
 
   .info {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 100px 245px;
     padding: 8px;
+    margin: auto;
 
     p {
       margin: 8px 0px;
@@ -24,6 +25,10 @@
     }
     .completed-p {
       color: $completedGreen;
+    }
+
+    .padding-left {
+      padding-left: 10px;
     }
 
     .edit-input {

@@ -8,9 +8,11 @@ import CloseIcon from "@material-ui/icons/Close";
 export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
   const [inputName, setInputName] = useState("");
   const [inputDue, setInputDue] = useState("");
+  const taskNameIsInvalid = inputName === "";
+  const dueDateIsInvalid = inputDue === "";
 
   function formatDate(date) {
-    return new Date(date).toLocaleDateString("en-US");
+    return new Date(date).toLocaleDateString("en-US", { timeZone: "UTC" });
   }
 
   const handleSaveName = async () => {
@@ -66,6 +68,7 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
         />
       </button>
       <div className="info">
+        {/* edit task input */}
         <p>Task:</p>
         <div className="edit-input">
           <input
@@ -74,10 +77,11 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
             placeholder={`${task.taskName}`}
             onChange={(e) => setInputName(e.target.value)}
           ></input>
-          <button>
-            <SaveIcon className="save-icon" onClick={() => handleSaveName()} />
+          <button disabled={taskNameIsInvalid} onClick={() => handleSaveName()}>
+            <SaveIcon className="save-icon" />
           </button>
         </div>
+        {/* edit due date input */}
         <p>Due:</p>
         <div className="edit-input">
           <input
@@ -89,21 +93,25 @@ export default function Edit({ task, userInfo, list, showEdit, setShowEdit }) {
             placeholder={`${formatDate(task.due)}`}
             onChange={(e) => setInputDue(e.target.value)}
           ></input>
-          <button>
-            <SaveIcon className="save-icon" onClick={() => handleSaveDate()} />
+          <button disabled={dueDateIsInvalid} onClick={() => handleSaveDate()}>
+            <SaveIcon className="save-icon" />
           </button>
         </div>
         <p>Created:</p>
-        <p>{formatDate(task.dateCreated)}</p>
+        <p className="padding-left">{formatDate(task.dateCreated)}</p>
         <p>Status:</p>
         {task.completed ? (
-          <p className="completed-p">Completed</p>
+          <p className="completed-p padding-left">Completed</p>
         ) : (
-          <p>Incomplete</p>
+          <p className="padding-left">Incomplete</p>
         )}
         <p>Priority:</p>
 
-        {task.urgent ? <p className="urgent-p">HIGH</p> : <p>Low</p>}
+        {task.urgent ? (
+          <p className="urgent-p padding-left">HIGH</p>
+        ) : (
+          <p className="padding-left">None</p>
+        )}
       </div>
     </div>
   );
