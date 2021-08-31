@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./editList.scss";
 import db from "../../lib/firebase";
+import { deleteTask } from "../../services/firebase";
 // icons
 import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
@@ -13,6 +14,7 @@ export default function EditList({
   showDeleteList,
   setShowDeleteList,
   setSidebarOpen,
+  tasks,
   setTasks,
 }) {
   const [inputName, setInputName] = useState("");
@@ -34,6 +36,10 @@ export default function EditList({
   };
 
   const handleDelete = async () => {
+    for (let i = 0; i < tasks.length; i++) {
+      deleteTask(userInfo.docId, list.listId, tasks[i].taskIdList);
+    }
+
     await db
       .collection("users")
       .doc(userInfo.docId)

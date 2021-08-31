@@ -94,6 +94,7 @@ export default function Dashboard() {
         showDeleteList={showDeleteList}
         setShowDeleteList={setShowDeleteList}
         setSidebarOpen={setSidebarOpen}
+        tasks={tasks}
         setTasks={setTasks}
       />
       <Sidebar

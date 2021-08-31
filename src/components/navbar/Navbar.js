@@ -19,6 +19,7 @@ export default function Navbar({
 }) {
   const { user } = useContext(UserContext);
   const [title, setTitle] = useState(list.listName);
+  const isInvalid = list.listName === "";
 
   // update list name
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function Navbar({
               </Link>
             </>
           )}
-          {user && (
+          {user && !isInvalid && (
             <MoreVertIcon
               className="edit-list-icon"
               onClick={() => handleCloseLists()}

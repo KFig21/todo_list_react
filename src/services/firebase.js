@@ -116,3 +116,24 @@ export async function addList(userId, input) {
     listId: listDocRef.id,
   });
 }
+
+// delete task
+export async function deleteTask(userInfo, list, task) {
+  await firebase
+    .firestore()
+    .collection("users")
+    .doc(userInfo)
+    .collection("lists")
+    .doc(list)
+    .collection("tasks")
+    .doc(task)
+    .delete();
+
+  await firebase
+    .firestore()
+    .collection("users")
+    .doc(userInfo.docId)
+    .collection("tasks")
+    .doc(task.taskIdMain)
+    .delete();
+}
