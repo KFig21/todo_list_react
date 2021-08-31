@@ -33,6 +33,7 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showListEdit, setShowListEdit] = useState(false);
   const [showDeleteList, setShowDeleteList] = useState(false);
+  const [username, setusername] = useState("");
   const history = useHistory();
 
   // load lists upon initial load
@@ -48,6 +49,7 @@ export default function Dashboard() {
 
     loadLists();
     setCurrentList(lists[0]);
+    setusername(userInfo.username);
   }, [userInfo.docId]);
 
   // update dashboard to include newly added list
@@ -82,6 +84,7 @@ export default function Dashboard() {
         showListEdit={showListEdit}
         setShowListEdit={setShowListEdit}
         setShowDeleteList={setShowDeleteList}
+        username={username}
       />
       <EditList
         list={currentList}
