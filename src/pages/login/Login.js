@@ -26,9 +26,17 @@ export default function Login() {
     }
   };
 
-  const handleVisitor = () => {
-    setEmailAddress("Visitor@mail.com");
-    setPassword("password");
+  const handleVisitor = async () => {
+    try {
+      await firebase
+        .auth()
+        .signInWithEmailAndPassword("Visitor@mail.com", "password");
+      history.push(ROUTES.DASHBOARD);
+    } catch (error) {
+      setEmailAddress("");
+      setPassword("");
+      setError(error.message);
+    }
   };
 
   useEffect(() => {
