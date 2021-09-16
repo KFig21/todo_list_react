@@ -6,10 +6,6 @@
 <h3>Summary</h3>
 <p>A to-do list app built with React, styled with Sass, and uses Firebase as a backend database. Users can create multiple lists with many tasks that can be edited in realtime thanks to firebase's snapshot feature.</p>
 
-<h3>Demo GIF</h3>
-
-![](demo.gif)
-
 <h3>Features:</h3>
 
 - Adding/deleting tasks & lists
@@ -18,6 +14,17 @@
 - Update task & list details in realtime.
 - Backend storage so users can access their lists on any device
 - Responsive design
+- 
+<h3>Demo GIF</h3>
+
+<h4>Desktop</h4>
+
+![](demo.gif)
+
+<h4>Mobile</h4>
+
+<img src="demoMobile.gif" width="250"/>
+
 
 -----------------------------
 
