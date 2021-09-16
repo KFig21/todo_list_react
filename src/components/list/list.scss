@@ -72,7 +72,9 @@
 
   .filterbar {
     position: fixed;
+    min-width: calc(100% - 300px);
     width: 80vw;
+    max-width: calc(100% - 200px);
     bottom: 0;
     background-color: $taskBarColor;
     height: 43.2px;
@@ -83,6 +85,8 @@
 
     @include mobile {
       width: 100%;
+      max-width: unset;
+      min-width: unset;
     }
 
     button {

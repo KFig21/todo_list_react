@@ -38,10 +38,12 @@ export default function Sidebar({
     <div className={"sidebar " + (sidebarOpen && "active")}>
       <div className="sidebar-list">
         {lists.map((list, index) => (
-          <div className="sidebar-list-item" key={`sidebar-${index}`}>
-            <span className="list-name" onClick={() => handleListClick(list)}>
-              {list.listName}
-            </span>
+          <div
+            className="sidebar-list-item"
+            key={`sidebar-${index}`}
+            onClick={() => handleListClick(list)}
+          >
+            <span className="list-name">{list.listName}</span>
           </div>
         ))}
         {user && (
