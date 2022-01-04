@@ -4,7 +4,7 @@
 <p><a href="https://kfig21.github.io/todo_list_react/" target="_blank" rel="noopener noreferrer">View the project here!</a> 👀</p>
 
 <h3>Summary</h3>
-<p>A to-do list app built with React, styled with Sass, and uses Firebase as a backend database. Users can create multiple lists with many tasks that can be edited in realtime thanks to firebase's snapshot feature.</p>
+<p>This was the 'To-do list" project for <a href="https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/todo-list" target="_blank" rel="noopener noreferrer">The Odin Project's</a> JavaScript curriculum. This app was built with React, styled with Sass, and uses Firebase as a backend database. Users can create multiple lists with many tasks that can be edited in realtime thanks to firebase's snapshot feature.</p>
 
 <h3>Features:</h3>
 
