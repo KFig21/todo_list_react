@@ -14,7 +14,7 @@
 - Update task & list details in realtime.
 - Backend storage so users can access their lists on any device
 - Responsive design
-- 
+
 <h3>Demo GIF</h3>
 
 <h4>Desktop</h4>
